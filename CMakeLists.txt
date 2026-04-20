@@ -14,4 +14,16 @@ add_executable(Tema_2_POO
         ShopManager.cpp
         ShopManager.h
         MenuSystem.cpp
-        MenuSystem.h)
+        MenuSystem.h
+        CoffeeBase.cpp
+        CoffeeBase.h
+        MilkBase.cpp
+        MilkBase.h
+        Latte.cpp
+        Latte.h
+        Tea.cpp
+        Tea.h
+        Milkshake.cpp
+        Milkshake.h
+        Snack.cpp
+        Snack.h)
