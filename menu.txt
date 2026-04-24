@@ -1,0 +1,10 @@
+COFFEE,Americano,3.00,9,120,0
+COFFEE,Cappuccino,4.00,9,20,130
+COFFEE,Double Espresso,3.50,18,60,0
+COFFEE,Latte,4.50,9,25,125
+COFFEE,Macchiato,4.50,9,140,10
+NON-COFFEE,Green Tea,3.00,250,1
+NON-COFFEE,Berry Shake,5.50,250,3
+SWEET,Choco Muffin,3.50,450
+SWEET,Cookie,2.00,150
+SWEET,Cinnamon Roll,4.00,440

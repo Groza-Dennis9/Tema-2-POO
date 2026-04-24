@@ -53,7 +53,8 @@ void ShopManager::loadData() {
         if (cFile.is_open()) {
             string line;
             while (getline(cFile, line)) {
-                if(line.empty()) continue;
+                if(line.empty())
+                    continue;
                 size_t lastSpace = line.find_last_of(' ');
                 if (lastSpace != string::npos) {
                     try {
@@ -95,9 +96,8 @@ void ShopManager::loadData() {
             }
         }
         mFile.close();
-
-    } catch (const std::exception& e) {
-        cerr << "CRITICAL DATA LOAD ERROR: " << e.what() << std::endl;
+    } catch (const exception& e) {
+        cerr << "CRITICAL DATA LOAD ERROR: " << e.what() << endl;
     }
 }
 
