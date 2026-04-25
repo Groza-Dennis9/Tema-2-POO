@@ -1,7 +1,21 @@
 #include "Ingredients.h"
 
+Ingredients::Ingredients() : beans(0), milk(0), water(0), fruit(0), tea(0), snacks(0) {}
+Ingredients::Ingredients(int b, int m, int w, const int f, int t, int s) : beans(b), milk(m), water(w), fruit(f), tea(t), snacks(s) {}
+
+Ingredients::Ingredients(const Ingredients &i) {
+    beans = i.beans;
+    milk = i.milk;
+    water = i.water;
+    fruit = i.fruit;
+    tea = i.tea;
+    snacks = i.snacks;
+}
+
+Ingredients::~Ingredients() {}
+
 void Ingredients::validate(int value) const {
-    if (value < 0) throw std::invalid_argument("Stock amount cannot be negative!");
+    if (value < 0) throw invalid_argument("Stock amount cannot be negative!");
 }
 
 int Ingredients::getBeans() const { return beans; }
@@ -18,8 +32,26 @@ void Ingredients::setFruit(int v) { validate(v); fruit = v; }
 void Ingredients::setTea(int v) { validate(v); tea = v; }
 void Ingredients::setSnacks(int v) { validate(v); snacks = v; }
 
+
+Ingredients& Ingredients::operator=(const Ingredients& i) {
+    if (this != &i) {
+        beans = i.beans;
+        milk = i.milk;
+        water = i.water;
+        fruit = i.fruit;
+        tea = i.tea;
+        snacks = i.snacks;
+    }
+    return *this;
+}
+
 ostream& operator<<(ostream& os, const Ingredients& i) {
     os << "Beans: " << i.beans << "g | Milk: " << i.milk << "ml | Water: " << i.water << "ml\n"
        << "Fruit: " << i.fruit << "pcs | Tea: " << i.tea << "bags | Snacks: " << i.snacks << "pcs";
     return os;
+}
+
+istream& operator>>(istream& is, Ingredients& i) {
+    is >> i.beans >> i.milk >> i.water >> i.fruit >> i.tea >> i.snacks;
+    return is;
 }

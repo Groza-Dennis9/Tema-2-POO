@@ -14,21 +14,29 @@ protected:
     double price;
 
 public:
-    //Constructor and Destructor
-    Product(string cat, string n, double p) : name(n), category(cat), price(p) {}
-    virtual ~Product() {}
+    virtual ~Product() = default;
+
+    //Constructors and Destructor
+    Product(string cat, string n, double p);
+    Product();
+    Product (const Product& p);
 
     //the ingredients of every product
     virtual void prepare(Ingredients& s) = 0;
     //the way each product has to be saved in a separate file
-    virtual std::string serialize() const = 0;
+    virtual string serialize() const = 0;
+    //for identifying each type of element for the menu
+    virtual Product* clone() const = 0;
 
     //Getters
     string getName() const;
     string getCategory() const;
     double getPrice() const;
 
+    //Operators overload
+    Product& operator=(const Product& p);
     friend ostream& operator<<(ostream& os, const Product& p);
+    friend istream& operator>>(istream& is, Product& p);
 };
 
 

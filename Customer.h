@@ -13,8 +13,10 @@ private:
 
 public:
     //Constructors
-    Customer() : name(""), points(0) {}
-    Customer(string n, int p) : name(n), points(p) {}
+    Customer();
+    Customer(string n, int p);
+    Customer (const Customer &c);
+    ~Customer();
 
     //Getters
     string getName() const;
@@ -24,7 +26,10 @@ public:
     //Setter
     void addPoints(int p);
 
-    friend std::ostream& operator<<(std::ostream& os, const Customer& c);
+    //Operators overload
+    Customer& operator=(const Customer& c);
+    friend ostream& operator<<(ostream& os, const Customer& c);
+    friend istream& operator>>(istream& is, Customer& c);
 };
 
 

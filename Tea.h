@@ -10,12 +10,21 @@ class Tea : public Product{
 private:
     int reqWater, reqBags;
 public:
-    //Constructor
-    Tea(string c, string n, double p, int w, int t) : Product(c,n,p), reqWater(w), reqBags(t) {}
+    //Constructors and Destructor
+    Tea(string c, string n, double p, int w, int t);
+    Tea();
+    Tea(const Tea& c);
+    ~Tea();
 
-    //initializing the pure methods from Product
+    //Initializing the pure methods from Product
     void prepare(Ingredients& s) override;
     string serialize() const override;
+    Product* clone() const override;
+
+    //Operators overload
+    Tea& operator=(const Tea& c);
+    friend ostream& operator<<(ostream& os, const Tea& c);
+    friend istream& operator>>(istream& is, Tea& c);
 };
 
 

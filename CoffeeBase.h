@@ -11,8 +11,16 @@ class CoffeeBase : virtual public Product{
 protected:
     int reqBeans, reqWater;
 public:
-    //Constructor
+    //Constructors and deconstructor
     CoffeeBase(string cat, string n, double p, int b, int w);
+    CoffeeBase();
+    CoffeeBase(const CoffeeBase& c);
+    ~CoffeeBase();
+
+    //operators overload
+    CoffeeBase& operator=(const CoffeeBase& c);
+    friend ostream& operator<<(ostream& os, const CoffeeBase& c);
+    friend istream& operator>>(istream& is, CoffeeBase& c);
 };
 
 

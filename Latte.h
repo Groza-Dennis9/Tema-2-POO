@@ -10,11 +10,20 @@ using namespace std;
 class Latte : public CoffeeBase, public MilkBase {
 public:
     //Constructor
-    Latte(string c, string n, double p, int b, int w, int m) : Product(c, n, p), CoffeeBase(c, n, p, b, w), MilkBase(c, n, p, m) {}
+    Latte(string c, string n, double p, int b, int w, int m);
+    Latte();
+    Latte(const Latte& l);
+    ~Latte() override;
 
-    //initializing the pure methods from Product
+    //initializing the pure methods for Product
     void prepare(Ingredients& s) override;
     string serialize() const override;
+    Product* clone() const override;
+
+    //operators overload
+    Latte& operator= (const Latte& l);
+    friend ostream& operator<< (ostream& os, const Latte &l);
+    friend istream& operator>> (istream& is, Latte &l);
 };
 
 

@@ -11,8 +11,16 @@ class MilkBase : virtual public Product{
 protected:
     int reqMilk;
 public:
-    //Constructor
-    MilkBase(std::string cat, std::string n, double p, int m);
+    //Constructors and Deconstructor
+    MilkBase(string cat, string n, double p, int m);
+    MilkBase();
+    MilkBase(const MilkBase&);
+    ~MilkBase();
+
+    //Operators overload
+    MilkBase& operator=(const MilkBase& m);
+    friend ostream& operator<<(ostream& os, const MilkBase& m);
+    friend istream& operator>>(istream& is, MilkBase& m);
 };
 
 

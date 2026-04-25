@@ -6,10 +6,23 @@
 #include <iostream>
 #include <fstream>
 
+ShopManager::ShopManager() : bankBalance(300.0) {}
+ShopManager::ShopManager(double bank) : bankBalance(bank) {}
+ShopManager::ShopManager(const ShopManager& other) {
+    this->bankBalance = other.bankBalance;
+    this->storage = other.storage;
+    this->customers = other.customers;
+
+    for (Product* p : other.menu) {
+        this->menu.push_back(p->clone());
+    }
+}
 
 ShopManager::~ShopManager() {
-    for (auto p : menu)
+    for (Product* p : menu) {
         delete p;
+    }
+    menu.clear();
 }
 
 double ShopManager::getBank() const { return bankBalance; }
@@ -33,6 +46,10 @@ void ShopManager::subMoney(double v) { bankBalance -= v; }
 
 void ShopManager::loadData() {
     try {
+        for (Product* p : menu)
+            delete p;
+        menu.clear();
+
         //Load Storage and Balance
         ifstream sFile("storage.txt");
         bankBalance = 300.0; // Default
@@ -120,4 +137,30 @@ void ShopManager::saveData() const {
         }
         cFile.close();
     }
+}
+
+ShopManager& ShopManager::operator=(const ShopManager &other) {
+    if (this == &other) return *this;
+
+    for (Product* p : menu)
+        delete p;
+    menu.clear();
+
+    this->bankBalance = other.bankBalance;
+    this->storage = other.storage;
+    this->customers = other.customers;
+
+    for (Product* p : other.menu) {
+        this->menu.push_back(p->clone());
+    }
+
+    return *this;
+}
+ostream& operator<<(ostream& os, const ShopManager& m) {
+    os << m.storage.getBeans() << " " << m.storage.getMilk() << " ";
+    return os;
+}
+istream& operator>>(istream& is, ShopManager& m) {
+    is >> m.bankBalance;
+    return is;
 }

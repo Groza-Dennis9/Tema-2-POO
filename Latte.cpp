@@ -1,8 +1,14 @@
 #include "Latte.h"
 
+Latte::Latte(string c, string n, double p, int b, int w, int m) : Product(c, n, p), CoffeeBase(c, n, p, b, w), MilkBase(c, n, p, m) {}
+Latte::Latte() : Product(), CoffeeBase(), MilkBase() {}
+Latte::Latte(const Latte &l) : Product(l), CoffeeBase(l), MilkBase(l) {}
+
+Latte::~Latte() {}
+
 void Latte::prepare(Ingredients& s) {
     if (s.getBeans() < reqBeans || s.getWater() < reqWater || s.getMilk() < reqMilk)
-        throw std::runtime_error("Insufficient Stock!");
+        throw runtime_error("Insufficient Stock!");
 
     s.setBeans(s.getBeans()-reqBeans);
     s.setWater(s.getWater()-reqWater);
@@ -10,4 +16,26 @@ void Latte::prepare(Ingredients& s) {
 }
 string Latte::serialize() const {
     return "COFFEE,"+name+","+to_string(price)+","+to_string(reqBeans)+","+to_string(reqWater)+","+to_string(reqMilk);
+}
+
+Product* Latte::clone() const {
+    return new Latte(*this);
+}
+
+
+Latte& Latte::operator= (const Latte& l) {
+    if (this != &l) {
+        Product::operator=(l);
+        CoffeeBase::operator=(l);
+        MilkBase::operator=(l);
+    }
+    return *this;
+}
+
+ostream& operator<< (ostream& os, const Latte &l) {
+    return os << l.serialize();
+}
+
+istream& operator>> (istream& is, Latte &l) {
+    return is;
 }

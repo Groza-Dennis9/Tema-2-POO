@@ -18,7 +18,9 @@ private:
     double bankBalance;
 public:
     //Constructor and Destructor
-    ShopManager() : bankBalance(300.0) {}
+    ShopManager();
+    ShopManager(double bank);
+    ShopManager(const ShopManager& other);
     ~ShopManager();
 
     //Getters
@@ -32,8 +34,13 @@ public:
     void subMoney(double v);
 
     void loadData();
-
     void saveData() const;
+
+    //Operators overload
+    ShopManager& operator=(const ShopManager& other);
+    friend ostream& operator<<(ostream& os, const ShopManager&);
+    friend istream& operator>>(istream& is, ShopManager& m);
+
 };
 
 

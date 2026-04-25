@@ -11,12 +11,21 @@ class Snack : public Product {
 private:
     int cal;
 public:
-    //Constructor
-    Snack(string cat, string n, double p, int c) : Product(cat, n, p), cal(c) {}
+    //Constructors and Deconstructor
+    Snack(string cat, string n, double p, int c);
+    Snack();
+    Snack(const Snack& s);
+    ~Snack();
 
     //initializing the pure methods from Product
     void prepare(Ingredients& s) override;
     string serialize() const override;
+    Product* clone() const override;
+
+    //Operators overload
+    Snack& operator=(const Snack& s);
+    friend istream& operator>>(istream& is, Snack& s);
+    friend ostream& operator<<(ostream& os, const Snack& s);
 };
 
 
