@@ -2,7 +2,6 @@
 #ifndef TEMA_2_POO_COFFEEBASE_H
 #define TEMA_2_POO_COFFEEBASE_H
 
-#include <iostream>
 #include <string>
 #include "Product.h"
 using namespace std;
@@ -12,10 +11,10 @@ protected:
     int reqBeans, reqWater;
 public:
     //Constructors and deconstructor
-    CoffeeBase(string cat, string n, double p, int b, int w);
+    CoffeeBase(const string &cat, const string &n, double p, int b, int w);
     CoffeeBase();
     CoffeeBase(const CoffeeBase& c);
-    ~CoffeeBase();
+    ~CoffeeBase() override;
 
     //operators overload
     CoffeeBase& operator=(const CoffeeBase& c);

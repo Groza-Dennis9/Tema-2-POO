@@ -26,8 +26,8 @@ public:
     //Getters
     double getBank() const;
     Ingredients& getStorage();
-    Customer& getCust(string n);
-    vector<Product*> getByCat(string c);
+    Customer& getCust(const string& n);
+    vector<Product*> getByCat(const string& c) const;
 
     //Functions
     void addMoney(double v);

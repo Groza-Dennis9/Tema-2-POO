@@ -10,12 +10,12 @@ private:
     int beans, milk, water, fruit, tea, snacks;
 
     //Error catching
-    void validate(int value) const;
+    static void validate(int value) ;
 
 public:
     //Constructors
     Ingredients();
-    Ingredients(int b, int m, int w, const int f, int t, int s);
+    Ingredients(int b, int m, int w, int f, int t, int s);
     Ingredients(const Ingredients& i);
     ~Ingredients();
 

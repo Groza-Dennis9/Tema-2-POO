@@ -1,15 +1,16 @@
 #include "Customer.h"
+
 using namespace std;
 
-Customer::Customer() : name(""), points(0) {}
-Customer::Customer(string n, int p) : name(n), points(p) {}
+Customer::Customer() : name(" "), points(0) {}
+Customer::Customer(string n, const int p) : name(n), points(p) {}
 
 Customer::Customer(const Customer &c) {
     name = c.name;
     points = c.points;
 }
 
-Customer::~Customer() {}
+Customer::~Customer() = default;
 
 string Customer::getName() const { return name; }
 int Customer::getPoints() const { return points; }

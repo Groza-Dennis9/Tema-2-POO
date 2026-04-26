@@ -1,10 +1,10 @@
 #include "Latte.h"
 
-Latte::Latte(string c, string n, double p, int b, int w, int m) : Product(c, n, p), CoffeeBase(c, n, p, b, w), MilkBase(c, n, p, m) {}
+Latte::Latte(const string& c, const string& n, const double p, const int b, const int w, const int m) : Product(c, n, p), CoffeeBase(c, n, p, b, w), MilkBase(c, n, p, m) {}
 Latte::Latte() : Product(), CoffeeBase(), MilkBase() {}
 Latte::Latte(const Latte &l) : Product(l), CoffeeBase(l), MilkBase(l) {}
 
-Latte::~Latte() {}
+Latte::~Latte() = default;
 
 void Latte::prepare(Ingredients& s) {
     if (s.getBeans() < reqBeans || s.getWater() < reqWater || s.getMilk() < reqMilk)

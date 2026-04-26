@@ -7,19 +7,19 @@
 #include <fstream>
 
 ShopManager::ShopManager() : bankBalance(300.0) {}
-ShopManager::ShopManager(double bank) : bankBalance(bank) {}
+ShopManager::ShopManager(const double bank) : bankBalance(bank) {}
 ShopManager::ShopManager(const ShopManager& other) {
     this->bankBalance = other.bankBalance;
     this->storage = other.storage;
     this->customers = other.customers;
 
-    for (Product* p : other.menu) {
+    for (const Product* p : other.menu) {
         this->menu.push_back(p->clone());
     }
 }
 
 ShopManager::~ShopManager() {
-    for (Product* p : menu) {
+    for (const Product* p : menu) {
         delete p;
     }
     menu.clear();
@@ -28,12 +28,12 @@ ShopManager::~ShopManager() {
 double ShopManager::getBank() const { return bankBalance; }
 Ingredients& ShopManager::getStorage() { return storage; }
 
-Customer& ShopManager::getCust(string n) {
+Customer& ShopManager::getCust(const string& n) {
     if (customers.find(n) == customers.end())
         customers[n] = Customer(n, 0);
     return customers[n];
 }
-vector<Product*> ShopManager::getByCat(string c) {
+vector<Product*> ShopManager::getByCat(const string& c) const {
     vector<Product*> f;
     for (auto p : menu)
         if (p->getCategory() == c)
@@ -41,8 +41,8 @@ vector<Product*> ShopManager::getByCat(string c) {
     return f;
 }
 
-void ShopManager::addMoney(double v) { bankBalance += v; }
-void ShopManager::subMoney(double v) { bankBalance -= v; }
+void ShopManager::addMoney(const double v) { bankBalance += v; }
+void ShopManager::subMoney(const double v) { bankBalance -= v; }
 
 void ShopManager::loadData() {
     try {
@@ -61,7 +61,8 @@ void ShopManager::loadData() {
             storage = Ingredients(b, m, w, f, t, s);
 
             double savedBalance;
-            if (sFile >> savedBalance) bankBalance = savedBalance;
+            if (sFile >> savedBalance)
+                bankBalance = savedBalance;
             sFile.close();
         }
 
@@ -76,7 +77,7 @@ void ShopManager::loadData() {
                 if (lastSpace != string::npos) {
                     try {
                         string n = line.substr(0, lastSpace);
-                        int p = std::stoi(line.substr(lastSpace + 1));
+                        int p = stoi(line.substr(lastSpace + 1));
                         customers[n] = Customer(n, p);
                     } catch (...) {
                     }
@@ -93,16 +94,22 @@ void ShopManager::loadData() {
 
         string line;
         while (getline(mFile, line)) {
-            if (line.empty()) continue;
+            if (line.empty())
+                continue;
             stringstream ss(line);
             string cat, n, p, e1, e2, e3;
-            getline(ss, cat, ','); getline(ss, n, ','); getline(ss, p, ',');
+            getline(ss, cat, ',');
+            getline(ss, n, ',');
+            getline(ss, p, ',');
 
             if (cat == "COFFEE") {
-                getline(ss, e1, ','); getline(ss, e2, ','); getline(ss, e3, ',');
+                getline(ss, e1, ',');
+                getline(ss, e2, ',');
+                getline(ss, e3, ',');
                 menu.push_back(new Latte(cat, n, stod(p), stoi(e1), stoi(e2), stoi(e3)));
             } else if (cat == "NON-COFFEE") {
-                getline(ss, e1, ','); getline(ss, e2, ',');
+                getline(ss, e1, ',');
+                getline(ss, e2, ',');
                 if (n.find("Tea") != string::npos)
                     menu.push_back(new Tea(cat, n, stod(p), stoi(e1), stoi(e2)));
                 else
@@ -140,9 +147,10 @@ void ShopManager::saveData() const {
 }
 
 ShopManager& ShopManager::operator=(const ShopManager &other) {
-    if (this == &other) return *this;
+    if (this == &other)
+        return *this;
 
-    for (Product* p : menu)
+    for (const Product* p : menu)
         delete p;
     menu.clear();
 

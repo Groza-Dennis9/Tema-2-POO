@@ -7,8 +7,8 @@ string Product::getName() const { return name; }
 string Product::getCategory() const { return category; }
 double Product::getPrice() const { return price; }
 
-Product::Product(string cat, string n, double p) : name(n), category(cat), price(p) {};
-Product::Product() : name(""), category(""), price(0) {};
+Product::Product(const string& cat, const string& n, const double p) : name(n), category(cat), price(p) {};
+Product::Product() : name(" "), category(" "), price(0) {};
 Product::Product(const Product &p) {
     name = p.name;
     category = p.category;

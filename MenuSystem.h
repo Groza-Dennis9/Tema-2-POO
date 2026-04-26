@@ -4,27 +4,24 @@
 
 #include "ShopManager.h"
 #include <iostream>
-#include <stdexcept>
-#include <string>
 using namespace std;
 
 class MenuSystem {
 private:
     ShopManager& shop;
 
-    int getChoiceInRange(int min, int max);
+    static int getChoiceInRange(int min, int max);
 
 public:
-MenuSystem(ShopManager& s) : shop(s) {}
-    void header();
+    //Constructor for running the game
+    MenuSystem(ShopManager& s) : shop(s) {}
 
-    void admin();
+    void header() const;
+    void admin() const;
+    void customer() const;
 
-    void customer();
-
-    void pause();
-
-    void run();
+    static void pause();
+    void run() const;
 };
 
 

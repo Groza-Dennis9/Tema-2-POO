@@ -3,7 +3,6 @@
 #define TEMA_2_POO_MILKSHAKE_H
 
 #include "MilkBase.h"
-#include <iostream>
 #include <string>
 using namespace std;
 
@@ -12,10 +11,10 @@ private:
     int reqFruit;
 public:
     //Constructors and Deconstructor
-    Milkshake(string c, string n, double p, int m, int f);
+    Milkshake(const string& c, const string& n, double p, int m, int f);
     Milkshake();
     Milkshake(const Milkshake& m);
-    ~Milkshake();
+    ~Milkshake() override;
 
     //initializing the pure methods from Product
     void prepare(Ingredients& s) override;

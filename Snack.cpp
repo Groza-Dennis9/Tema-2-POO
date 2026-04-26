@@ -1,11 +1,11 @@
 #include "Snack.h"
 
-Snack::Snack(string cat, string n, double p, int c) : Product(cat, n, p), cal(c) {}
+Snack::Snack(const string& cat, const string& n, const double p, const int c) : Product(cat, n, p), cal(c) {}
 Snack::Snack() : Product(), cal(0) {};
 Snack::Snack(const Snack& s) : Product(s) {
     cal = s.cal;
 }
-Snack::~Snack(){};
+Snack::~Snack()= default;
 
 void Snack::prepare(Ingredients& s) {
     if (s.getSnacks() <= 0)
@@ -29,6 +29,7 @@ Snack& Snack::operator=(const Snack& s) {
     return *this;
 }
 istream& operator>>(istream& is, Snack& s) {
+    is >> s.cal;
     return is;
 }
 ostream& operator<<(ostream& os, const Snack& s) {

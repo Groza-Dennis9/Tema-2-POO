@@ -4,7 +4,6 @@
 
 #include "Product.h"
 #include <string>
-#include <iostream>
 using namespace std;
 
 class MilkBase : virtual public Product{
@@ -12,10 +11,10 @@ protected:
     int reqMilk;
 public:
     //Constructors and Deconstructor
-    MilkBase(string cat, string n, double p, int m);
+    MilkBase(const string &cat, const string &n, double p, int m);
     MilkBase();
     MilkBase(const MilkBase&);
-    ~MilkBase();
+    ~MilkBase() override;
 
     //Operators overload
     MilkBase& operator=(const MilkBase& m);

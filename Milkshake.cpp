@@ -1,11 +1,11 @@
 #include "Milkshake.h"
 
-Milkshake::Milkshake(string c, string n, double p, int m, int f) : Product(c,n,p), MilkBase(c,n,p,m), reqFruit(f) {}
+Milkshake::Milkshake(const string& c, const string& n, const double p, const int m, const int f) : Product(c,n,p), MilkBase(c,n,p,m), reqFruit(f) {}
 Milkshake::Milkshake() : Product(), MilkBase(), reqFruit(0){}
 Milkshake::Milkshake(const Milkshake &m) : Product(m), MilkBase(m){
     reqFruit = m.reqFruit;
 }
-Milkshake::~Milkshake(){};
+Milkshake::~Milkshake()= default;
 
 void Milkshake::prepare(Ingredients& s) {
     if (s.getMilk() < reqMilk || s.getFruit() < reqFruit)
@@ -40,5 +40,6 @@ ostream& operator<<(ostream& os, const Milkshake& m) {
     return os;
 }
 istream& operator>>(istream& is, Milkshake& m) {
+    is >> m.reqFruit;
     return is;
 }

@@ -4,10 +4,10 @@ MilkBase::MilkBase() : Product(), reqMilk(0) {}
 MilkBase::MilkBase(const MilkBase& c) : Product(c){
     reqMilk = c.reqMilk;
 }
-MilkBase::MilkBase(string cat, string n, double p, int m) : Product(cat, n, p){
+MilkBase::MilkBase(const string &cat, const string &n, const double p, const int m) : Product(cat, n, p){
     reqMilk = m;
 }
-MilkBase::~MilkBase(){}
+MilkBase::~MilkBase() = default;
 
 MilkBase& MilkBase::operator=(const MilkBase& m) {
     if (this != &m) {
@@ -18,6 +18,7 @@ MilkBase& MilkBase::operator=(const MilkBase& m) {
 }
 
 ostream& operator<<(ostream& os, const MilkBase& m) {
+    os << m.reqMilk;
     return os;
 }
 istream& operator>>(istream& is, MilkBase& m) {

@@ -11,10 +11,10 @@ private:
     int reqWater, reqBags;
 public:
     //Constructors and Destructor
-    Tea(string c, string n, double p, int w, int t);
+    Tea(const string& c, const string &n, double p, int w, int t);
     Tea();
     Tea(const Tea& c);
-    ~Tea();
+    ~Tea() override;
 
     //Initializing the pure methods from Product
     void prepare(Ingredients& s) override;

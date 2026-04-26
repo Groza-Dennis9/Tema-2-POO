@@ -4,7 +4,6 @@
 
 #include "Product.h"
 #include <string>
-#include <iostream>
 using namespace std;
 
 class Snack : public Product {
@@ -12,10 +11,10 @@ private:
     int cal;
 public:
     //Constructors and Deconstructor
-    Snack(string cat, string n, double p, int c);
+    Snack(const string& cat, const string& n, double p, int c);
     Snack();
     Snack(const Snack& s);
-    ~Snack();
+    ~Snack() override;
 
     //initializing the pure methods from Product
     void prepare(Ingredients& s) override;

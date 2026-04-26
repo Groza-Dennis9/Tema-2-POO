@@ -1,17 +1,17 @@
 #include "CoffeeBase.h"
 
-CoffeeBase::CoffeeBase(string cat, string n, double p, int b, int w) : Product(cat, n, p) {
+CoffeeBase::CoffeeBase(const string &cat, const string &n, const double p, const int b, const int w) : Product(cat, n, p) {
     reqBeans = b;
     reqWater = w;
 }
 
-CoffeeBase::CoffeeBase() : reqBeans(0), reqWater(0), Product() {}
+CoffeeBase::CoffeeBase() : Product(), reqBeans(0), reqWater(0) {}
 
 CoffeeBase::CoffeeBase(const CoffeeBase &c) : Product(c) {
     reqBeans = c.reqBeans;
     reqWater = c.reqWater;
 }
-CoffeeBase::~CoffeeBase() {};
+CoffeeBase::~CoffeeBase() = default;
 
 CoffeeBase& CoffeeBase:: operator=(const CoffeeBase& c) {
     if (this != &c) {

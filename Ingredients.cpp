@@ -1,7 +1,7 @@
 #include "Ingredients.h"
 
 Ingredients::Ingredients() : beans(0), milk(0), water(0), fruit(0), tea(0), snacks(0) {}
-Ingredients::Ingredients(int b, int m, int w, const int f, int t, int s) : beans(b), milk(m), water(w), fruit(f), tea(t), snacks(s) {}
+Ingredients::Ingredients(const int b, const int m, const int w, const int f, const int t, const int s) : beans(b), milk(m), water(w), fruit(f), tea(t), snacks(s) {}
 
 Ingredients::Ingredients(const Ingredients &i) {
     beans = i.beans;
@@ -12,10 +12,11 @@ Ingredients::Ingredients(const Ingredients &i) {
     snacks = i.snacks;
 }
 
-Ingredients::~Ingredients() {}
+Ingredients::~Ingredients() = default;
 
-void Ingredients::validate(int value) const {
-    if (value < 0) throw invalid_argument("Stock amount cannot be negative!");
+void Ingredients::validate(const int value) {
+    if (value < 0)
+        throw invalid_argument("Stock amount cannot be negative!");
 }
 
 int Ingredients::getBeans() const { return beans; }
@@ -25,12 +26,12 @@ int Ingredients::getFruit() const { return fruit; }
 int Ingredients::getTea() const { return tea; }
 int Ingredients::getSnacks() const { return snacks; }
 
-void Ingredients::setBeans(int v) { validate(v); beans = v; }
-void Ingredients::setMilk(int v) { validate(v); milk = v; }
-void Ingredients::setWater(int v) { validate(v); water = v; }
-void Ingredients::setFruit(int v) { validate(v); fruit = v; }
-void Ingredients::setTea(int v) { validate(v); tea = v; }
-void Ingredients::setSnacks(int v) { validate(v); snacks = v; }
+void Ingredients::setBeans(const int v) { validate(v); beans = v; }
+void Ingredients::setMilk(const int v) { validate(v); milk = v; }
+void Ingredients::setWater(const int v) { validate(v); water = v; }
+void Ingredients::setFruit(const int v) { validate(v); fruit = v; }
+void Ingredients::setTea(const int v) { validate(v); tea = v; }
+void Ingredients::setSnacks(const int v) { validate(v); snacks = v; }
 
 
 Ingredients& Ingredients::operator=(const Ingredients& i) {

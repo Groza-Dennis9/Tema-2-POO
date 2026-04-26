@@ -10,7 +10,7 @@ using namespace std;
 class Latte : public CoffeeBase, public MilkBase {
 public:
     //Constructor
-    Latte(string c, string n, double p, int b, int w, int m);
+    Latte(const string& c, const string& n, double p, int b, int w, int m);
     Latte();
     Latte(const Latte& l);
     ~Latte() override;

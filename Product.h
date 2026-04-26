@@ -2,7 +2,6 @@
 #ifndef TEMA_2_POO_PRODUCT_H
 #define TEMA_2_POO_PRODUCT_H
 
-#include <iostream>
 #include <string>
 #include <iomanip>
 #include "Ingredients.h"
@@ -17,7 +16,7 @@ public:
     virtual ~Product() = default;
 
     //Constructors and Destructor
-    Product(string cat, string n, double p);
+    Product(const string& cat, const string& n, double p);
     Product();
     Product (const Product& p);
 

@@ -1,12 +1,12 @@
 #include "Tea.h"
 
-Tea::Tea(string c, string n, double p, int w, int t) : Product(c,n,p), reqWater(w), reqBags(t) {}
+Tea::Tea(const string& c, const string &n, const double p, const int w, const int t) : Product(c,n,p), reqWater(w), reqBags(t) {}
 Tea::Tea() : Product(), reqWater(0), reqBags(0) {}
 Tea::Tea(const Tea &c) : Product(c) {
     reqWater = c.reqWater;
     reqBags = c.reqBags;
 }
-Tea::~Tea() {}
+Tea::~Tea() = default;
 
 
 void Tea::prepare(Ingredients& s) {
@@ -34,6 +34,7 @@ Tea& Tea::operator=(const Tea& c) {
      return *this;
 }
 ostream& operator<<(ostream& os, const Tea& c) {
+    os << c.serialize();
     return os;
 }
 
