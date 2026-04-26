@@ -11,7 +11,7 @@ Tea::~Tea() = default;
 
 void Tea::prepare(Ingredients& s) {
     if (s.getWater() < reqWater || s.getTea() < reqBags)
-        throw std::runtime_error("Insufficient Stock!");
+        throw runtime_error("Insufficient Stock!");
 
     s.setWater(s.getWater()-reqWater);
     s.setTea(s.getTea()-reqBags);

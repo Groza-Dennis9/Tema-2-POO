@@ -48,7 +48,7 @@ void MenuSystem::admin() const {
 
                 shop.saveData();
                 cout << ">> " << msg << "\n";
-            } catch(const std::exception& e) {
+            } catch(const exception& e) {
                 cout << "Admin Error: " << e.what() << "\n";
             }
         }

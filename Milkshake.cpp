@@ -9,7 +9,7 @@ Milkshake::~Milkshake()= default;
 
 void Milkshake::prepare(Ingredients& s) {
     if (s.getMilk() < reqMilk || s.getFruit() < reqFruit)
-        throw std::runtime_error("Insufficient Stock!");
+        throw runtime_error("Insufficient Stock!");
 
     s.setMilk(s.getMilk()-reqMilk);
     s.setFruit(s.getFruit()-reqFruit);
