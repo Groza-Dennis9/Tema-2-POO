@@ -9,6 +9,7 @@ using namespace std;
 class MenuSystem {
 private:
     ShopManager& shop;
+    const string ADMIN_PASSWORD = "coffee123";
 
     static int getChoiceInRange(int min, int max);
 

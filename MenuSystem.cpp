@@ -18,10 +18,20 @@ int MenuSystem::getChoiceInRange(const int min, const int max) {
 }
 
 void MenuSystem::header() const {
+    cout<<"\n________________________________________________\n";
     cout << "\n--- SHOP BALANCE: $" << fixed << setprecision(2) << shop.getBank() << " ---\n";
 }
 
 void MenuSystem::admin() const {
+        string input;
+        cout << "[SECURITY] Enter Admin Password: ";
+        cin >> input;
+
+        if (input != ADMIN_PASSWORD) {
+            cout << "ACCESS DENIED: Incorrect password.\n";
+            pause();
+            return;
+        }
         while(true) {
             try {
                 header();
